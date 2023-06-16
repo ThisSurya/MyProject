@@ -711,3 +711,4 @@ WHERE `Transaksi_id` = :Transaksi_id:', [...], false)
 11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
 INFO - 2023-06-16 07:01:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-06-16 07:01:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-16 14:53:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
