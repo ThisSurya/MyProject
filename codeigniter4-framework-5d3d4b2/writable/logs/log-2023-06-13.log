@@ -1,0 +1,287 @@
+ERROR - 2023-06-13 12:44:40 --> mysqli_sql_exception: Incorrect column name 'fullname
+                ' in D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `u...', 0)
+#1 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `u...')
+#2 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `u...')
+#3 D:\codeigniter4-framework-5d3d4b2\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `u...')
+#4 D:\codeigniter4-framework-5d3d4b2\app\Database\Migrations\2023-06-13-124247_TableUser.php(32): CodeIgniter\Database\Forge->createTable('users', true)
+#5 D:\codeigniter4-framework-5d3d4b2\system\Database\MigrationRunner.php(877): App\Database\Migrations\TableUser->up()
+#6 D:\codeigniter4-framework-5d3d4b2\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 D:\codeigniter4-framework-5d3d4b2\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 D:\codeigniter4-framework-5d3d4b2\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 D:\codeigniter4-framework-5d3d4b2\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 D:\codeigniter4-framework-5d3d4b2\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2023-06-13 14:02:35 --> mysqli_sql_exception: Table 'tabungin.user' doesn't exist in D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 D:\codeigniter4-framework-5d3d4b2\system\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', Array, NULL, 'username')
+#6 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', Array, Array)
+#7 D:\codeigniter4-framework-5d3d4b2\system\Controller.php(140): CodeIgniter\Validation\Validation->run()
+#8 D:\codeigniter4-framework-5d3d4b2\app\Controllers\Auth.php(18): CodeIgniter\Controller->validate(Array)
+#9 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+#10 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 D:\codeigniter4-framework-5d3d4b2\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 D:\codeigniter4-framework-5d3d4b2\system\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4...')
+#14 {main}
+CRITICAL - 2023-06-13 14:02:35 --> Table 'tabungin.user' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `user`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', [...], null, 'username')
+ 7 SYSTEMPATH\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', [...], [...])
+ 8 SYSTEMPATH\Controller.php(140): CodeIgniter\Validation\Validation->run()
+ 9 APPPATH\Controllers\Auth.php(18): CodeIgniter\Controller->validate([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+ERROR - 2023-06-13 14:03:58 --> mysqli_sql_exception: Table 'tabungin.user' doesn't exist in D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 D:\codeigniter4-framework-5d3d4b2\system\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', Array, NULL, 'username')
+#6 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', Array, Array)
+#7 D:\codeigniter4-framework-5d3d4b2\system\Controller.php(140): CodeIgniter\Validation\Validation->run()
+#8 D:\codeigniter4-framework-5d3d4b2\app\Controllers\Auth.php(18): CodeIgniter\Controller->validate(Array)
+#9 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+#10 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 D:\codeigniter4-framework-5d3d4b2\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 D:\codeigniter4-framework-5d3d4b2\system\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4...')
+#14 {main}
+CRITICAL - 2023-06-13 14:03:58 --> Table 'tabungin.user' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `user`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', [...], null, 'username')
+ 7 SYSTEMPATH\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', [...], [...])
+ 8 SYSTEMPATH\Controller.php(140): CodeIgniter\Validation\Validation->run()
+ 9 APPPATH\Controllers\Auth.php(18): CodeIgniter\Controller->validate([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+ERROR - 2023-06-13 14:04:14 --> mysqli_sql_exception: Table 'tabungin.user' doesn't exist in D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 D:\codeigniter4-framework-5d3d4b2\system\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', Array, NULL, 'username')
+#6 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', Array, Array)
+#7 D:\codeigniter4-framework-5d3d4b2\system\Controller.php(140): CodeIgniter\Validation\Validation->run()
+#8 D:\codeigniter4-framework-5d3d4b2\app\Controllers\Auth.php(18): CodeIgniter\Controller->validate(Array)
+#9 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+#10 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 D:\codeigniter4-framework-5d3d4b2\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 D:\codeigniter4-framework-5d3d4b2\system\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4...')
+#14 {main}
+CRITICAL - 2023-06-13 14:04:14 --> Table 'tabungin.user' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `user`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', [...], null, 'username')
+ 7 SYSTEMPATH\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', [...], [...])
+ 8 SYSTEMPATH\Controller.php(140): CodeIgniter\Validation\Validation->run()
+ 9 APPPATH\Controllers\Auth.php(18): CodeIgniter\Controller->validate([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+ERROR - 2023-06-13 14:09:19 --> mysqli_sql_exception: Table 'tabungin.user' doesn't exist in D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 D:\codeigniter4-framework-5d3d4b2\system\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', Array, NULL, 'username')
+#6 D:\codeigniter4-framework-5d3d4b2\system\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', Array, Array)
+#7 D:\codeigniter4-framework-5d3d4b2\system\Controller.php(140): CodeIgniter\Validation\Validation->run()
+#8 D:\codeigniter4-framework-5d3d4b2\app\Controllers\Auth.php(18): CodeIgniter\Controller->validate(Array)
+#9 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+#10 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#11 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 D:\codeigniter4-framework-5d3d4b2\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#13 D:\codeigniter4-framework-5d3d4b2\system\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4...')
+#14 {main}
+CRITICAL - 2023-06-13 14:09:19 --> Table 'tabungin.user' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1
+FROM `user`
+WHERE `username` = \'jotaro\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `user`
+WHERE `username` = :username:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Validation\StrictRules\Rules.php(206): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\Validation\Validation.php(312): CodeIgniter\Validation\StrictRules\Rules->is_unique('jotaro', 'username', [...], null, 'username')
+ 7 SYSTEMPATH\Validation\Validation.php(170): CodeIgniter\Validation\Validation->processRules('username', 'username', 'jotaro', [...], [...])
+ 8 SYSTEMPATH\Controller.php(140): CodeIgniter\Validation\Validation->run()
+ 9 APPPATH\Controllers\Auth.php(18): CodeIgniter\Controller->validate([...])
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+CRITICAL - 2023-06-13 14:20:50 --> You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 883.
+ 1 SYSTEMPATH\Model.php(642): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(297): CodeIgniter\Model->builder()
+ 3 SYSTEMPATH\BaseModel.php(782): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(730): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(692): CodeIgniter\Model->insert(Object(App\Entities\User), false)
+ 6 APPPATH\Models\UserModel.php(35): CodeIgniter\BaseModel->save(Object(App\Entities\User))
+ 7 APPPATH\Controllers\Auth.php(20): App\Models\UserModel->addUser([...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->addUser()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+INFO - 2023-06-13 14:22:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-06-13 14:59:22 --> Undefined variable $validation
+in APPPATH\Views\auth_login.php on line 19.
+ 1 APPPATH\Views\auth_login.php(19): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $validation', 'D:\\codeigniter4-framework-5d3d4b2\\app\\Views\\auth_login.php', 19)
+ 2 SYSTEMPATH\View\View.php(213): include('D:\\codeigniter4-framework-5d3d4b2\\app\\Views\\auth_login.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('auth_login', [], true)
+ 5 APPPATH\Controllers\Auth.php(16): view('auth_login')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->verification()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+INFO - 2023-06-13 15:04:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-06-13 15:04:26 --> Call to undefined method App\Models\UserModel::loginRules
+in SYSTEMPATH\Model.php on line 842.
+ 1 APPPATH\Controllers\Auth.php(39): CodeIgniter\Model->__call('loginRules', [])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->login()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+INFO - 2023-06-13 15:04:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-06-13 15:04:56 --> mysqli_sql_exception: Unknown column '/username' in 'where clause' in D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 D:\codeigniter4-framework-5d3d4b2\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 D:\codeigniter4-framework-5d3d4b2\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 D:\codeigniter4-framework-5d3d4b2\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\codeigniter4-framework-5d3d4b2\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 D:\codeigniter4-framework-5d3d4b2\app\Models\UserModel.php(40): CodeIgniter\BaseModel->first()
+#7 D:\codeigniter4-framework-5d3d4b2\app\Controllers\Auth.php(42): App\Models\UserModel->login('jotaro', '12345678')
+#8 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(934): App\Controllers\Auth->login()
+#9 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 D:\codeigniter4-framework-5d3d4b2\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\codeigniter4-framework-5d3d4b2\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 D:\codeigniter4-framework-5d3d4b2\system\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4...')
+#13 {main}
+CRITICAL - 2023-06-13 15:04:56 --> Unknown column '/username' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `users`
+WHERE `/username` = \'jotaro\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `users`
+WHERE `/username` = \'jotaro\'
+ LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `users`
+WHERE `/username` = \'jotaro\'
+ LIMIT 1')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `/username` = :/username:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 7 APPPATH\Models\UserModel.php(40): CodeIgniter\BaseModel->first()
+ 8 APPPATH\Controllers\Auth.php(42): App\Models\UserModel->login('jotaro', '12345678')
+ 9 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->login()
+10 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+11 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('D:\\codeigniter4-framework-5d3d4b2\\public\\index.php')
+INFO - 2023-06-13 15:11:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-06-13 15:22:40 --> Class App\Filters\CekLogin cannot extend interface CodeIgniter\Filters\FilterInterface
+in APPPATH\Filters\CekLogin.php on line 8.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2023-06-13 15:23:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-13 15:23:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-13 15:24:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-13 15:24:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-13 15:25:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-13 15:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-13 15:35:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-13 15:35:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
