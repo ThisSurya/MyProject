@@ -34,6 +34,7 @@ class Catatan extends BaseController
                 $simpan['nominal'] *= -1;
             }
             $Laporanmodel->Insertlaporan($simpan, $tablename);
+            return redirect()->to('/');
         }else{
             $data = [
                 'validation' => $this->validator,
@@ -55,6 +56,7 @@ class Catatan extends BaseController
                 $simpan['nominal'] *= -1;
             }
             $Laporanmodel->Updatelaporan($simpan, $tablename);
+            return redirect()->to('/');
         }  else{
             $data = [
                 'validation' => $this->validator,
@@ -67,7 +69,6 @@ class Catatan extends BaseController
     public function Inserttable(){
         $newlaporan = new LaporanModel();
         
-
         $dompet = $newlaporan->Newlaporan();
         if($dompet){
             return view('view_catatan');

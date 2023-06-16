@@ -17,16 +17,27 @@ class LaporanModel extends Model
         'nama_transaksi', 'kategori', 'nominal', 'Tanggal'
     ];
 
+    public function getPemasukkan($tableName){
+        $db = \Config\Database::connect();
+
+        return $db->table($tableName)->select('nominal')->where('kategori', 1)->get()->getResult();
+    }
+
+    public function getPengeluaran($tableName){
+        $db = \Config\Database::connect();
+
+        return $db->table($tableName)->select('nominal')->where('kategori', 2)->get()->getResult();
+    }
+
     //Insert laporan
     public function Insertlaporan($data, $tablename){
         $transaksi = [
             'nama_transaksi' => $data['nama_transaksi'],
             'kategori' => $data['kategori'],
             'nominal' => $data['nominal'],
-            'Tanggal' => $data['Tanggal'],
+            'Tanggal' => $data['Tanggal']
         ];
-        $this->db->table($tablename)->insert($data);
-
+        $this->db->table($tablename)->insert($transaksi);
     }
 
     //manggil laporan
@@ -80,11 +91,9 @@ class LaporanModel extends Model
                 'CURRENT_TIMESTAMP',
             ]
         ]);
-
         
         $dbForge->addKey('Transaksi_id', true);
         $dbForge->createTable($tableName);
-
 
         return true;
     }

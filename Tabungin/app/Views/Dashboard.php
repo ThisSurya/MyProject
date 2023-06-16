@@ -41,10 +41,23 @@
                     <?php $Hasil += $key->nominal;?>
                   <?php endforeach; ?>
                   <tr>
-                    <td scope="5"><?= $Hasil; ?></td>
+                    <td scope=""><?= $Hasil; ?></td>
+                    <?php
+                    $Hasil = 0;
+                     foreach($pemasukkan as $key){
+                      $Hasil += $key->nominal;
+                    }?>
+                    <td scope="">Pemasukkan: <?= $Hasil; ?></td>
+                    <?php 
+                    $Hasil = 0;
+                    foreach($pengeluaran as $key){
+                      $Hasil += abs($key->nominal);
+                    }?>
+                    <td scope="">Pengeluaran: <?= $Hasil; ?></td>
                   </tr>
                   </tbody>
                 </table>
+                <a href="/logout" class="btn btn-danger">logout</a>
             </div>
         </div>
         

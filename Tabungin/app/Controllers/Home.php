@@ -14,7 +14,11 @@ class Home extends BaseController
         $id = session()->get('currentuser')['userid'];
         $tablename = "laporan_" . $id;
 
-        $data['userTable'] = $Laporanmodel->Calllaporan($tablename);
+        $data = [
+            'userTable' => $Laporanmodel->Calllaporan($tablename),
+            'pemasukkan' => $Laporanmodel->getPemasukkan($tablename),
+            'pengeluaran' => $Laporanmodel->getPengeluaran($tablename)
+        ];
 
         return view('Dashboard', $data);
     }
@@ -25,10 +29,8 @@ class Home extends BaseController
 
         $name = session()->get('currentuser')['userid'];
         $tablename = "laporan_" . $name;
-
         $Row = $updateModel->Callsingle($id, $tablename);
         
-
         $data = [
             'id' => $id,
             'nama_transaksi' => $Row->nama_transaksi,
