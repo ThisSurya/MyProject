@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Tambah catatan</h1>
+    <h1>Update catatan</h1>
     <?= $validation->listErrors(); ?>
     <div class="container">
       <div class="Row">
@@ -22,6 +22,7 @@
           <div class="mb-3">
               <label for="nama_transaksi" class="form-label">nama_transaksi</label>
               <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?= $nama_transaksi; ?>">
+              <div style="color: red; font-size: small;"> <?=$validation->getError('nama_transaksi')?> </div>
           </div>
           <div class="mb-3">
               <label for="kategori" class="form-label">Kategori</label>
@@ -32,7 +33,8 @@
           </div>
           <div class="mb-3">
               <label for="nominal" class="form-label">nominal</label>
-              <input type="text" class="form-control" id="nominal" name="nominal" value="<?= $nominal; ?>" required>
+              <input type="text" class="form-control" id="nominal" name="nominal" value="<?= $nominal; ?>">
+              <div style="color: red; font-size: small;"> <?=$validation->getError('nominal')?> </div>
           </div>
           <div class="mb-3">
               <label for="Tanggal" class="form-label">Tanggal</label>

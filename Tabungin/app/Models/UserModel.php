@@ -36,6 +36,22 @@ class UserModel extends Model
         return [$user->username, $this->getInsertID()];
     }
 
+    public function updateUser($data, $id){
+        $find = $this->find($id);
+        $password = 
+        $find->username = $data['username'];
+
+        if(!empty($data['password'])){
+            $find->password = $data['password'];
+        }
+
+        $find->fullname = $data['fullname'];
+
+        $this->save($find);
+
+        return 1;
+    }
+
     public function login($username, $password){
         $user = $this->where('username', $username)->first();
         if($user && password_verify($password, $user->password)){

@@ -37,6 +37,8 @@ $routes->get('/logout', 'Auth::logout');
 
 //Akses post login
 $routes->get('/', 'Home::index', ['filter'=>'cekLogin']);
+$routes->get('/update', 'Home::updateForm', ['filter'=>'cekLogin']);
+$routes->get('/updateProfile', 'Updateprofile::index', ['filter'=>'cekLogin']);
 $routes->get('/catatan', 'Catatan::index', ['filter'=>'cekLogin']);
 $routes->get('/newlaporan', 'Catatan::Inserttable', ['filter'=>'cekLogin']);
 $routes->get('/updateLaporan/(:segment)', 'Home::updatelaporan/$1', ['filter'=>'cekLogin']);
@@ -47,6 +49,7 @@ $routes->post('/add_User', 'Auth::addUser');
 $routes->post('/login', 'Auth::login');
 $routes->post('/catatan', 'Catatan::Insertdata');
 $routes->post('/updateData', 'Catatan::Updatedata');
+$routes->post('/updateProfile', 'Updateprofile::Updatedata');
 
 
 /*

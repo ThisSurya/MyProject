@@ -48,8 +48,8 @@ class Catatan extends BaseController
         $Laporanmodel = new LaporanModel();
         $simpan = $this -> request -> getPost();
 
-        $data['id'] = session()->get('currentuser')['userid'];
-        $tablename = "laporan_" . $data['id'];
+        $id = session()->get('currentuser')['userid'];
+        $tablename = "laporan_" . $id;
 
         if($this->validate($Laporanmodel->rules)){
             if($simpan['kategori'] == '2'){
@@ -58,11 +58,16 @@ class Catatan extends BaseController
             $Laporanmodel->Updatelaporan($simpan, $tablename);
             return redirect()->to('/');
         }  else{
-            $data = [
+            $Error = [
                 'validation' => $this->validator,
-                'input' => $this->request->getPost()
+                'id' => $id,
+
+                'nama_transaksi' => $this->request->getPost('nama_transaksi'),
+                'kategori' => $this->request->getPost('kategori'),
+                'nominal' => $this->request->getPost('nominal'),
+                'Tanggal' => $this->request->getPost('Tanggal'),
             ];
-            return view('view_catatan', $data);
+            return view('Updatecatatan', $Error);
         }
     }
 

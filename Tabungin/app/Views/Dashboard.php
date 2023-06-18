@@ -16,7 +16,8 @@
         <div class="row">
             <div class="col">
                 <h1>Hallo selamat datang! <?= $data; ?> </h1>
-                <a href="/catatan"> Tambah Catatan</a>
+                <a href="/updateProfile" class="btn btn-primary">Update your account</a>
+                <a href="/catatan" class="btn btn-"> Tambah Catatan</a>
                 <table class="table">
                   <thead>
                   <tr>

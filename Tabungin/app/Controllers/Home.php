@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\LaporanModel;
+use App\Models\UserModel;
 use stdClass;
 
 class Home extends BaseController
@@ -14,13 +15,23 @@ class Home extends BaseController
         $id = session()->get('currentuser')['userid'];
         $tablename = "laporan_" . $id;
 
-        $data = [
-            'userTable' => $Laporanmodel->Calllaporan($tablename),
-            'pemasukkan' => $Laporanmodel->getPemasukkan($tablename),
-            'pengeluaran' => $Laporanmodel->getPengeluaran($tablename)
-        ];
+        $db = \Config\Database::connect();
+        $tablename = "laporan_" . $id;
+        if($db->tableExists($tablename)){
+            $data = [
+                'userTable' => $Laporanmodel->Calllaporan($tablename),
+                'pemasukkan' => $Laporanmodel->getPemasukkan($tablename),
+                'pengeluaran' => $Laporanmodel->getPengeluaran($tablename)
+            ];
+            return view('Dashboard', $data);
+            
+        }else{
+            return redirect()->to('/newlaporan');
+        }        
+    }
 
-        return view('Dashboard', $data);
+    public function updateForm(){
+        return redirect()->to('/updateProfile');
     }
 
     public function updatelaporan($id){

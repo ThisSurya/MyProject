@@ -13,7 +13,6 @@
   </head>
   <body>
     <h1>Tambah catatan</h1>
-    <?= $validation->listErrors(); ?>
     <div class="container">
       <div class="row">
         <div class="col">
@@ -22,6 +21,7 @@
           <div class="mb-3">
               <label for="nama_transaksi" class="form-label">nama_transaksi</label>
               <input type="text" class="form-control" id="nama_transaksi" name="nama_transaksi" value="<?= set_value('nama_transaksi'); ?>">
+              <div style="color: red; font-size: small;"> <?=$validation->getError('nama_transaksi')?> </div>
           </div>
           <div class="mb-3">
               <label for="kategori" class="form-label">Kategori</label>
@@ -32,11 +32,13 @@
           </div>
           <div class="mb-3">
               <label for="nominal" class="form-label">nominal</label>
-              <input type="text" class="form-control" id="nominal" name="nominal" value="<?= set_value('nominal'); ?>" required>
+              <input type="text" class="form-control" id="nominal" name="nominal" value="<?= set_value('nominal'); ?>">
+              <div style="color: red; font-size: small;"> <?=$validation->getError('nominal')?> </div>
           </div>
           <div class="mb-3">
               <label for="Tanggal" class="form-label">Tanggal</label>
-              <input type="date" class="form-control" id="Tanggal" name="Tanggal" value="<?= set_value('Tanggal'); ?>" required>
+              <input type="date" class="form-control" id="Tanggal" name="Tanggal" value="<?= set_value('Tanggal'); ?>">
+              <div style="color: red; font-size: small;"> <?=$validation->getError('Tanggal')?> </div>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       	<?= form_close(); ?>

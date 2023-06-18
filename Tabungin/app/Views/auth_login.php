@@ -18,7 +18,7 @@ $validation = \Config\Services::validation();
                 <?= form_open('/login')?>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="username" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+                        <input type="username" class="form-control" id="username" name="username">
                         <div style="color: red; font-size: small;"> <?=$validation->getError('username')?> </div>
                     </div>
                     <div class="mb-3">
