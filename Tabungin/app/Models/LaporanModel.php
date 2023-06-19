@@ -40,6 +40,7 @@ class LaporanModel extends Model
         $this->db->table($tablename)->insert($transaksi);
     }
 
+    //untuk memanggil laporan
     //manggil laporan
     public function Calllaporan($tableName){
         $db = \Config\Database::connect();
@@ -50,6 +51,28 @@ class LaporanModel extends Model
         }
     }
 
+    public function Todaylaporan($tableName){
+        $db = \Config\Database::connect();
+        $date = date('Y-m-d');
+
+        if($db->tableExists($tableName)){
+            return $db->table($tableName)->select('*')->where('Tanggal', $date)->get()->getResult();
+        }
+    }
+
+    public function Yesterdaylaporan($tableName){
+        $db = \Config\Database::connect();
+        $date = date('Y-m-d');
+
+        $day = date('Y-m-d', strtotime('-1 day', strtotime($date)));
+        if($db->tableExists($tableName)){
+            return $db->table($tableName)->select('*')->where('Tanggal', $day)->get()->getResult();
+        }
+    }
+
+    
+
+    //untuk update data dalam 1 laporan dan 1 table spesifik user
     public function Callsingle($id, $tableName){
         $db = \Config\Database::connect();
 

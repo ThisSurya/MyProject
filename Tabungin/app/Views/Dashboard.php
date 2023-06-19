@@ -1,6 +1,8 @@
 <?php
   $sess = session();
   $data = $sess->get('currentuser')['username'];
+  $date = date('Y-m-d');
+  $yesterdaydate = date('Y-m-d', strtotime('-1 day', strtotime($date)));
 ?>
 
 <!doctype html>
@@ -20,6 +22,9 @@
                 <a href="/catatan" class="btn btn-"> Tambah Catatan</a>
                 <table class="table">
                   <thead>
+                    <tr>
+                      <td>Tanggal: <?= $date; ?></td>
+                    </tr>
                   <tr>
                       <th scope="col">No</th>
                       <th scope="col">Nama transaksi</th>
@@ -30,7 +35,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <?php $no = 0; $Hasil = 0; foreach($userTable as $key): $no++;?>
+                  <?php $no = 0; $Hasil = 0; foreach($todayTable as $key): $no++;?>
                     <tr>
                       <td><?=$no;?></td>
                       <td><?= $key->nama_transaksi; ?></td>
@@ -45,13 +50,54 @@
                     <td scope=""><?= $Hasil; ?></td>
                     <?php
                     $Hasil = 0;
-                     foreach($pemasukkan as $key){
+                     foreach($todayTable as $key){
                       $Hasil += $key->nominal;
                     }?>
                     <td scope="">Pemasukkan: <?= $Hasil; ?></td>
                     <?php 
                     $Hasil = 0;
-                    foreach($pengeluaran as $key){
+                    foreach($todayTable as $key){
+                      $Hasil += abs($key->nominal);
+                    }?>
+                    <td scope="">Pengeluaran: <?= $Hasil; ?></td>
+                  </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <td>Tanggal kemarin: <?= $yesterdaydate; ?></td>
+                    </tr>
+                  <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Nama transaksi</th>
+                      <th scope="col">kategori</th>
+                      <th scope="col">nominal</th>
+                      <th scope="col">Tanggal</th>
+                      <th scope="col">option</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php $no = 0; $Hasil = 0; foreach($yesterdayTable as $key): $no++;?>
+                    <tr>
+                      <td><?=$no;?></td>
+                      <td><?= $key->nama_transaksi; ?></td>
+                      <td><?= $key->kategori; ?></td>
+                      <td><?= $key->nominal; ?></td>
+                      <td><?= $key->Tanggal; ?></td>
+                      <td><a href="/updateLaporan/<?= $key->Transaksi_id; ?>" class="btn btn-secondary">Edit</a></td>
+                    </tr>
+                    <?php $Hasil += $key->nominal;?>
+                  <?php endforeach; ?>
+                  <tr>
+                    <td scope=""><?= $Hasil; ?></td>
+                    <?php
+                    $Hasil = 0;
+                     foreach($yesterdayTable as $key){
+                      $Hasil += $key->nominal;
+                    }?>
+                    <td scope="">Pemasukkan: <?= $Hasil; ?></td>
+                    <?php 
+                    $Hasil = 0;
+                    foreach($yesterdayTable as $key){
                       $Hasil += abs($key->nominal);
                     }?>
                     <td scope="">Pengeluaran: <?= $Hasil; ?></td>

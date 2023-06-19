@@ -14,7 +14,7 @@ class Updateprofile extends BaseController
 
         $data['Table'] = $User->find($id);
         
-        return view('Update_form', $data);
+        return view('Update_profile', $data);
     }
 
     public function Updatedata(){
@@ -22,8 +22,22 @@ class Updateprofile extends BaseController
         $id = session()->get('currentuser')['userid'];
         $Dataprofile = $this->request->getPost();
 
-        $result = $userModel->updateUser($Dataprofile, $id);
-        session()->set('currentuser', ['username' => $Dataprofile['username'], 'userid'   => $id]);
-        return redirect()->to('/');
+        if($this->validate($userModel->Updaterules)){
+            session()->set('currentuser', ['username' => $Dataprofile['username'], 'userid'   => $id]);
+            $result = $userModel->updateUser($Dataprofile, $id);
+            return redirect()->to('/');
+            
+        }else{
+            $Error = [
+                'validation' => $this->validator,
+                'id' => $id,
+                'Table' => $userModel->find($id),
+
+                'username' => $this->request->getPost('username'),
+                'fullname' => $this->request->getPost('fullname')
+            ];
+            return view('Update_profile', $Error);
+        }
+        
     }
 }

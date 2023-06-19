@@ -67,7 +67,7 @@ class Catatan extends BaseController
                 'nominal' => $this->request->getPost('nominal'),
                 'Tanggal' => $this->request->getPost('Tanggal'),
             ];
-            return view('Updatecatatan', $Error);
+            return view('Update_catatan', $Error);
         }
     }
 

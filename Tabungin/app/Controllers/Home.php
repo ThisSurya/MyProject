@@ -15,13 +15,18 @@ class Home extends BaseController
         $id = session()->get('currentuser')['userid'];
         $tablename = "laporan_" . $id;
 
+        $date = date('Y-m-d');
+
         $db = \Config\Database::connect();
         $tablename = "laporan_" . $id;
         if($db->tableExists($tablename)){
             $data = [
                 'userTable' => $Laporanmodel->Calllaporan($tablename),
+                'todayTable' => $Laporanmodel->Todaylaporan($tablename),
+                'yesterdayTable' => $Laporanmodel->Yesterdaylaporan($tablename),
                 'pemasukkan' => $Laporanmodel->getPemasukkan($tablename),
-                'pengeluaran' => $Laporanmodel->getPengeluaran($tablename)
+                'pengeluaran' => $Laporanmodel->getPengeluaran($tablename),
+                'date' => date('Y-m-d', strtotime('-1 day', strtotime($date)))
             ];
             return view('Dashboard', $data);
             
@@ -36,7 +41,6 @@ class Home extends BaseController
 
     public function updatelaporan($id){
         $updateModel = new LaporanModel();
-        $antiObjek = new stdClass();
 
         $name = session()->get('currentuser')['userid'];
         $tablename = "laporan_" . $name;
@@ -50,6 +54,6 @@ class Home extends BaseController
             'Tanggal' => $Row->Tanggal,
         ];
         
-        return view('Updatecatatan', $data);
+        return view('Update_catatan', $data);
     }
 }

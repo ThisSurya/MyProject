@@ -21,6 +21,11 @@ class UserModel extends Model
         'fullname' => 'required|min_length[5]'
     ];
 
+    public $Updaterules = [
+        'username' => 'required|alpha_numeric|min_length[5]|is_unique[users.username]',
+        'fullname' => 'required|min_length[5]'
+    ];
+
     public $loginRules = [
         'username' => 'required',
         'password' => 'required'
@@ -38,14 +43,12 @@ class UserModel extends Model
 
     public function updateUser($data, $id){
         $find = $this->find($id);
-        $password = 
         $find->username = $data['username'];
+        $find->fullname = $data['fullname'];
 
         if(!empty($data['password'])){
             $find->password = $data['password'];
         }
-
-        $find->fullname = $data['fullname'];
 
         $this->save($find);
 
