@@ -15,18 +15,19 @@ class Home extends BaseController
         $id = session()->get('currentuser')['userid'];
         $tablename = "laporan_" . $id;
 
-        $date = date('Y-m-d');
+        $Today = date('Y-m-d');
+        $yesterday = date('Y-m-d', strtotime('-1 day', strtotime($Today)));
 
         $db = \Config\Database::connect();
         $tablename = "laporan_" . $id;
         if($db->tableExists($tablename)){
             $data = [
                 'userTable' => $Laporanmodel->Calllaporan($tablename),
-                'todayTable' => $Laporanmodel->Todaylaporan($tablename),
-                'yesterdayTable' => $Laporanmodel->Yesterdaylaporan($tablename),
-                'pemasukkan' => $Laporanmodel->getPemasukkan($tablename),
-                'pengeluaran' => $Laporanmodel->getPengeluaran($tablename),
-                'date' => date('Y-m-d', strtotime('-1 day', strtotime($date)))
+                'todayTable' => $Laporanmodel->Todaylaporan($tablename, $Today),
+                'yesterdayTable' => $Laporanmodel->Todaylaporan($tablename, $yesterday),
+                'pemasukkan' => $Laporanmodel->getLaporan($tablename, 1),
+                'pengeluaran' => $Laporanmodel->getLaporan($tablename, 2),
+                'date' => date('Y-m-d', strtotime('-1 day', strtotime($Today)))
             ];
             return view('Dashboard', $data);
             
@@ -43,6 +44,7 @@ class Home extends BaseController
         $updateModel = new LaporanModel();
 
         $name = session()->get('currentuser')['userid'];
+
         $tablename = "laporan_" . $name;
         $Row = $updateModel->Callsingle($id, $tablename);
         

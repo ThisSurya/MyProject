@@ -7,6 +7,7 @@ use CodeIgniter\Database\Forge;
 
 class LaporanModel extends Model
 {
+    
     //rules
     public $rules = [
         'nama_transaksi' => 'required|alpha_numeric',
@@ -17,27 +18,31 @@ class LaporanModel extends Model
         'nama_transaksi', 'kategori', 'nominal', 'Tanggal'
     ];
 
-    public function getPemasukkan($tableName){
+    public function getLaporan($tableName, $category){
         $db = \Config\Database::connect();
-
-        return $db->table($tableName)->select('nominal')->where('kategori', 1)->get()->getResult();
-    }
-
-    public function getPengeluaran($tableName){
-        $db = \Config\Database::connect();
-
-        return $db->table($tableName)->select('nominal')->where('kategori', 2)->get()->getResult();
+        if($db->tableExists($tableName)){
+            return $db->table($tableName)->select('nominal')->where('kategori', $category)->get()->getResult();
+        }
+        else{
+            echo "Noice";
+        }
     }
 
     //Insert laporan
     public function Insertlaporan($data, $tablename){
-        $transaksi = [
-            'nama_transaksi' => $data['nama_transaksi'],
-            'kategori' => $data['kategori'],
-            'nominal' => $data['nominal'],
-            'Tanggal' => $data['Tanggal']
-        ];
-        $this->db->table($tablename)->insert($transaksi);
+        $db = \Config\Database::connect();
+        if($db->tableExists($tablename)){
+            $transaksi = [
+                'nama_transaksi' => $data['nama_transaksi'],
+                'kategori' => $data['kategori'],
+                'nominal' => $data['nominal'],
+                'Tanggal' => $data['Tanggal']
+            ];
+            $this->db->table($tablename)->insert($transaksi);
+        }else{
+            echo "Pembajakan yang bagus";
+        }
+        
     }
 
     //untuk memanggil laporan
@@ -47,30 +52,20 @@ class LaporanModel extends Model
         if($db->tableExists($tableName)){
             return $db->table($tableName)->get()->getResult();
         }else {
-            echo "Nope";
+            echo "Pembajakan yang bagus";
         }
     }
 
-    public function Todaylaporan($tableName){
+    public function Todaylaporan($tableName, $day){
         $db = \Config\Database::connect();
         $date = date('Y-m-d');
 
-        if($db->tableExists($tableName)){
-            return $db->table($tableName)->select('*')->where('Tanggal', $date)->get()->getResult();
-        }
-    }
-
-    public function Yesterdaylaporan($tableName){
-        $db = \Config\Database::connect();
-        $date = date('Y-m-d');
-
-        $day = date('Y-m-d', strtotime('-1 day', strtotime($date)));
         if($db->tableExists($tableName)){
             return $db->table($tableName)->select('*')->where('Tanggal', $day)->get()->getResult();
+        }else{
+            echo "pembajakan yang bagus";
         }
-    }
-
-    
+    }   
 
     //untuk update data dalam 1 laporan dan 1 table spesifik user
     public function Callsingle($id, $tableName){
@@ -133,5 +128,6 @@ class LaporanModel extends Model
             'Tanggal' => $data['Tanggal'],
         ];
         $this -> db -> table($tableName) -> update($transaksi, $find);
+        return 1;
     }
 }

@@ -17,9 +17,9 @@ $validation = \Config\Services::validation();
             <div class="col">
                 <?= form_open('/login')?>
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="username" class="form-control" id="username" name="username">
-                        <div style="color: red; font-size: small;"> <?=$validation->getError('username')?> </div>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="Email" class="form-control" id="email" name="email">
+                        <div style="color: red; font-size: small;"> <?=$validation->getError('email')?> </div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>

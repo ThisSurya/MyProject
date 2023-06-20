@@ -23,10 +23,10 @@ $validation = \Config\Services::validation();
                     <div style="color: red; font-size: small;"> <?=$validation->getError('username')?> </div>
                 </div>
                 <div class="mb-3">
-                    <label for="fullname" class="form-label">Full name:</label>
-                    <input type="text" class="form-control" id="fullname" name="fullname"
-                    value="<?= $Table->fullname; ?>" aria-describedby="emailHelp">
-                    <div style="color: red; font-size: small;"> <?=$validation->getError('fullname')?> </div>
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" class="form-control" id="email" name="email"
+                    value="<?= $Table->email; ?>" aria-describedby="emailHelp">
+                    <div style="color: red; font-size: small;"> <?=$validation->getError('email')?> </div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>

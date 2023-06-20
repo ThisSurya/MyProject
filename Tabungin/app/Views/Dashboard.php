@@ -1,6 +1,6 @@
 <?php
   $sess = session();
-  $data = $sess->get('currentuser')['username'];
+  $data = $sess->get('currentuser')['email'];
   $date = date('Y-m-d');
   $yesterdaydate = date('Y-m-d', strtotime('-1 day', strtotime($date)));
 ?>

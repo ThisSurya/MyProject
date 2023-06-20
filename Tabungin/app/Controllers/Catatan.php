@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\LaporanModel;
+use App\Models\UserModel;
 
 class Catatan extends BaseController
 {
@@ -24,6 +25,7 @@ class Catatan extends BaseController
     public function Insertdata(){
         $simpan = $this->request->getPost();
         $Laporanmodel = new LaporanModel();
+
 
         $data['id'] = session()->get('currentuser')['userid'];
 
@@ -46,29 +48,40 @@ class Catatan extends BaseController
 
     public function Updatedata(){
         $Laporanmodel = new LaporanModel();
+        $Usermdl = new UserModel();
         $simpan = $this -> request -> getPost();
+        $sess = session();
 
         $id = session()->get('currentuser')['userid'];
         $tablename = "laporan_" . $id;
 
-        if($this->validate($Laporanmodel->rules)){
-            if($simpan['kategori'] == '2'){
-                $simpan['nominal'] *= -1;
-            }
-            $Laporanmodel->Updatelaporan($simpan, $tablename);
-            return redirect()->to('/');
-        }  else{
-            $Error = [
-                'validation' => $this->validator,
-                'id' => $id,
+        $Check['profile'] = $Usermdl->find($id);
 
-                'nama_transaksi' => $this->request->getPost('nama_transaksi'),
-                'kategori' => $this->request->getPost('kategori'),
-                'nominal' => $this->request->getPost('nominal'),
-                'Tanggal' => $this->request->getPost('Tanggal'),
-            ];
-            return view('Update_catatan', $Error);
+        if($Check['profile']->id == $sess->get('currentuser')['userid'])
+        {
+            if($this->validate($Laporanmodel->rules)){
+                if($simpan['kategori'] == '2'){
+                    $simpan['nominal'] *= -1;
+                }
+                $Laporanmodel->Updatelaporan($simpan, $tablename);
+                return redirect()->to('/');
+            }  else{
+                $Error = [
+                    'validation' => $this->validator,
+                    'id' => $id,
+    
+                    'nama_transaksi' => $this->request->getPost('nama_transaksi'),
+                    'kategori' => $this->request->getPost('kategori'),
+                    'nominal' => $this->request->getPost('nominal'),
+                    'Tanggal' => $this->request->getPost('Tanggal'),
+                ];
+                return view('Update_catatan', $Error);
+            }
         }
+        else{
+            echo "Pembajakan yang bagus";
+        }
+        
     }
 
     public function Inserttable(){

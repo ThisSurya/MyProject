@@ -24,7 +24,7 @@ class Auth extends BaseController
         if($this->validate($userModel->rules)){
             $result = $userModel->addUser($this->request->getPost());
             $sess = session();
-            $sess->set('currentuser', ['username' => $result[0], 'userid'   => $result[1]]);
+            $sess->set('currentuser', ['email' => $result[0], 'userid'   => $result[1]]);
             return redirect()->to('/');
         } else {
             $data['validation'] = $this->validator;
@@ -39,21 +39,16 @@ class Auth extends BaseController
 
         if($this->validate($userMdl->loginRules)){
             $result = $userMdl->login(
-                $this->request->getPost('username'),
+                $this->request->getPost('email'),
                 $this->request->getPost('password')
             );
             if($result){
                 $sess->set('currentuser', [
-                    'username' => $result[0], 'userid' => $result[1]
+                    'email' => $result[0], 'userid' => $result[1]
                 ]);
-
-                $data = [
-                    'Username' => $result[0], // $result[0] mengacu pada nama
-                    'Id_user' => $result[1]
-                ];
                 return redirect()->to('/');
             }else{
-                $sess->setFlashdata('login_error', 'Kombinasi password dan username tidak ditemukan.');
+                $sess->setFlashdata('login_error', 'Kombinasi password dan email tidak ditemukan.');
                 return redirect()->to('/');
             }
         }else{

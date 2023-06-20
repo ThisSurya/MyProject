@@ -9,25 +9,25 @@ class UserModel extends Model
     protected $table = 'users';
 
     protected $allowedFields = [
-        'username', 'password', 'fullname'
+        'username', 'password', 'email'
     ];
 
     protected $returnType = \App\Entities\User::class;
 
     public $rules = [
-        'username' => 'required|alpha_numeric|min_length[5]|is_unique[users.username]',
+        'username' => 'required|alpha_numeric|min_length[5]',
         'password' => 'required|min_length[8]',
         'confirmation' => 'required_with[password]|matches[password]',
-        'fullname' => 'required|min_length[5]'
+        'email' => 'required|min_length[5]|is_unique[users.email]'
     ];
 
     public $Updaterules = [
-        'username' => 'required|alpha_numeric|min_length[5]|is_unique[users.username]',
-        'fullname' => 'required|min_length[5]'
+        'username' => 'required|alpha_numeric|min_length[5]',
+        'email' => 'required|min_length[5]|is_unique[users.email]'
     ];
 
     public $loginRules = [
-        'username' => 'required',
+        'email' => 'required',
         'password' => 'required'
     ];
 
@@ -36,7 +36,7 @@ class UserModel extends Model
 
         $user->username = $data['username'];
         $user->password = $data['password'];
-        $user->fullname = $data['fullname'];
+        $user->email = $data['email'];
         $this->save($user);
         return [$user->username, $this->getInsertID()];
     }
@@ -44,7 +44,7 @@ class UserModel extends Model
     public function updateUser($data, $id){
         $find = $this->find($id);
         $find->username = $data['username'];
-        $find->fullname = $data['fullname'];
+        $find->email = $data['email'];
 
         if(!empty($data['password'])){
             $find->password = $data['password'];
@@ -55,10 +55,10 @@ class UserModel extends Model
         return 1;
     }
 
-    public function login($username, $password){
-        $user = $this->where('username', $username)->first();
+    public function login($email, $password){
+        $user = $this->where('email', $email)->first();
         if($user && password_verify($password, $user->password)){
-            return [$user->username, $user->id];
+            return [$user->email, $user->id];
         }else{
             return false;
         }
