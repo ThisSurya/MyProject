@@ -7,6 +7,9 @@ use App\Models\UserModel;
 
 class Auth extends BaseController
 {
+    public function tes(){
+        return view('tes');
+    }
 
     public function index()
     {

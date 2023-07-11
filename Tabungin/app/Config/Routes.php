@@ -31,6 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 //need autentication
+$routes->get('/tes', 'Auth::tes' );
 $routes->get('/register', 'Auth::index' );
 $routes->get('/auth', 'Auth::verification');
 $routes->get('/logout', 'Auth::logout');

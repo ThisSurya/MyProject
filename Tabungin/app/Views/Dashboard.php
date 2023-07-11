@@ -45,19 +45,27 @@
                       <td><a href="/updateLaporan/<?= $key->Transaksi_id; ?>" class="btn btn-secondary">Edit</a></td>
                     </tr>
                     <?php $Hasil += $key->nominal;?>
-                  <?php endforeach; ?>
+                  <?php endforeach; 
+                  if($Hasil <= 0){
+                    $Hasil = 0;
+                  }
+                  ?>
                   <tr>
                     <td scope=""><?= $Hasil; ?></td>
                     <?php
                     $Hasil = 0;
-                     foreach($todayTable as $key){
-                      $Hasil += $key->nominal;
+                    foreach($todayTable as $key){
+                      if($key->nominal > 0){
+                        $Hasil += $key->nominal;
+                      }
                     }?>
                     <td scope="">Pemasukkan: <?= $Hasil; ?></td>
                     <?php 
                     $Hasil = 0;
                     foreach($todayTable as $key){
-                      $Hasil += abs($key->nominal);
+                      if($key->nominal < 0){
+                        $Hasil += abs($key->nominal);
+                      }
                     }?>
                     <td scope="">Pengeluaran: <?= $Hasil; ?></td>
                   </tr>
@@ -92,13 +100,17 @@
                     <?php
                     $Hasil = 0;
                      foreach($yesterdayTable as $key){
-                      $Hasil += $key->nominal;
+                      if($key->nominal > 0){
+                        $Hasil += $key->nominal;
+                      }
                     }?>
                     <td scope="">Pemasukkan: <?= $Hasil; ?></td>
                     <?php 
                     $Hasil = 0;
                     foreach($yesterdayTable as $key){
-                      $Hasil += abs($key->nominal);
+                      if($key->nominal < 0){
+                        $Hasil += abs($key->nominal);
+                      }
                     }?>
                     <td scope="">Pengeluaran: <?= $Hasil; ?></td>
                   </tr>
