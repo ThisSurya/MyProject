@@ -10,7 +10,7 @@ class LaporanModel extends Model
     
     //rules
     public $rules = [
-        'nama_transaksi' => 'required|alpha_numeric',
+        'nama_transaksi' => 'required|string',
         'kategori' => 'required',
         'nominal' => 'required|integer'
     ];
